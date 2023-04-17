@@ -15,20 +15,24 @@ const fetchData = async () => {
     const todo = response.data as Todo;
     const { id, title, completed } = todo;
 
-    return `
-      The Todo with ID: ${id}
-      Has a title of: ${title}
-      Is if finished? ${completed}
-    `;
+    logTodo(id, title, completed);
   } catch (error) {
     console.log(error);
     throw error;
   }
 };
 
+const logTodo = (id: number, title: string, completed: boolean) => {
+  console.log(`
+  The Todo with ID: ${id}
+  Has a title of: ${title}
+  Is if finished? ${completed}
+`);
+};
+
 (async () => {
   try {
-    console.log(await fetchData());
+    await fetchData();
   } catch (error) {
     console.log('An error occured: ', error);
   }
